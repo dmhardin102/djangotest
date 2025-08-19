@@ -5,7 +5,17 @@
     <title>Documents</title>
 </head>
 <body>
+    <p>
+        Logged in as {{ user.username }} |
+        <a href="{% url 'files:logout' %}">Logout</a>
+    </p>
     <h1>Available Documents</h1>
+    {% if user.is_staff %}
+    <p>
+        <a href="{% url 'files:upload_document' %}">Upload Document</a> |
+        <a href="{% url 'files:user_list' %}">Manage Users</a>
+    </p>
+    {% endif %}
     <ul>
         {% for document in documents %}
         <li>
